@@ -7,34 +7,41 @@ const MAX_MESSAGES = 50;
 
 const INITIAL_BRIEF = `Good morning, Dr. Kaplan. Here's your Wednesday brief:
 
-**Sunrise Gardens (AM)**
-• Mrs. Chen, Rm 14 — Aricept 2-week recheck due today. Still waiting on Dr. Reeves' cardiology note. Amy wants a callback (after 4).
-• Mr. Davis, Rm 22 — K+ recheck drawn yesterday, result should be back this morning. Lisinopril still held.
+🔴 **Overnight alert — Davis, Rm 22 (Sunrise)**
+K+ came back at 6.1 — up from 5.8 Thursday. Had an emesis episode at 11pm, settled after ondansetron. Vitals stable but this is trending the wrong direction. Recommend STAT EKG + repeat BMP first thing. Nephrology (Dr. Santos) may need to get involved today.
 
-**Elm Creek (PM)**
-• Mrs. Park, Unit B — Sinemet reassessment today. 2 falls in last 10 days. PT wheelchair eval still unsigned.
+**Sunrise Gardens (AM) — 5 patients on your list**
+• Davis, Rm 22 — ⚠️ K+ 6.1, see above
+• Chen, Rm 14 — Aricept 2-week recheck due today. Restless night, transient confusion at 2am (resolved). Amy still wants a callback (after 4).
+• Tanaka, Rm 17 — speech therapy recommending diet upgrade to mechanical soft, needs your sign-off. Son usually calls Wednesdays ~noon.
+• Briggs, Rm 9 — stable, monthly weight check. Albuterol refill flagged by pharmacy.
+• Henderson, Rm 28 — stable, brief check-in only.
 
-**Other pending:**
-• Torres prior auth (Brookside) — day 3, no response yet
-• Williams UA culture (Oakwood) — expect today or tomorrow
-• Williams family meeting — tomorrow 2pm
+**Elm Creek (PM) — 3 patients**
+• Park, Unit B — Sinemet reassessment today. 2 falls in 10 days. PT wheelchair eval still unsigned.
+• Cole, Unit C — increased knee pain per aide. May need pain reassessment.
+• Washington, Unit A — monthly check-in. Stable.
 
-Anything you want to hit first?`;
+**Cross-facility pending:**
+• Torres prior auth (Brookside) — day 3, no response. 14-day assessment Friday.
+• Williams UA culture (Oakwood) — expect today or tomorrow. Family meeting TOMORROW 2pm.
+
+Want me to prioritize your rounding order?`;
 
 const INITIAL_SUGGESTIONS = [
-  "What's my day look like?",
-  "What's pending at Sunrise?",
-  "Give me an update on Mrs. Chen",
-  "Who's the DON on nights at Sunrise?",
-  "Draft a note for Mrs. Park's reassessment",
+  "Who should I see first?",
+  "What's my best rounding order?",
+  "Tell me more about Davis",
+  "Who's the DON on days at Sunrise?",
+  "Draft a note for Chen's Aricept recheck",
 ];
 
 const FOLLOWUP_SUGGESTIONS = [
-  "What about Oakwood?",
-  "Call Amy Chen after 4",
-  "What's the status on Torres's prior auth?",
+  "Get Dr. Santos on the phone",
+  "What about Elm Creek this afternoon?",
   "Prep me for the Williams family meeting",
   "Order the usual on Davis",
+  "Who's my sickest patient right now?",
 ];
 
 function formatText(text) {
