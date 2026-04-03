@@ -5,43 +5,21 @@ import { useState, useRef, useEffect } from 'react';
 const DEMO_PASSWORD = 'ronda2026';
 const MAX_MESSAGES = 50;
 
-const INITIAL_BRIEF = `Good morning, Dr. Kaplan. Here's your Wednesday brief:
-
-🔴 **Overnight alert — Davis, Rm 22 (Sunrise)**
-K+ came back at 6.1 — up from 5.8 Thursday. Had an emesis episode at 11pm, settled after ondansetron. Vitals stable but this is trending the wrong direction. Recommend STAT EKG + repeat BMP first thing. Nephrology (Dr. Santos) may need to get involved today.
-
-**Sunrise Gardens (AM) — 5 patients on your list**
-• Davis, Rm 22 — ⚠️ K+ 6.1, see above
-• Chen, Rm 14 — Aricept 2-week recheck due today. Restless night, transient confusion at 2am (resolved). Amy still wants a callback (after 4).
-• Tanaka, Rm 17 — speech therapy recommending diet upgrade to mechanical soft, needs your sign-off. Son usually calls Wednesdays ~noon.
-• Briggs, Rm 9 — stable, monthly weight check. Albuterol refill flagged by pharmacy.
-• Henderson, Rm 28 — stable, brief check-in only.
-
-**Elm Creek (PM) — 3 patients**
-• Park, Unit B — Sinemet reassessment today. 2 falls in 10 days. PT wheelchair eval still unsigned.
-• Cole, Unit C — increased knee pain per aide. May need pain reassessment.
-• Washington, Unit A — monthly check-in. Stable.
-
-**Cross-facility pending:**
-• Torres prior auth (Brookside) — day 3, no response. 14-day assessment Friday.
-• Williams UA culture (Oakwood) — expect today or tomorrow. Family meeting TOMORROW 2pm.
-
-Want me to prioritize your rounding order?`;
-
 const INITIAL_SUGGESTIONS = [
+  "Give me my morning brief",
   "Who should I see first?",
-  "What's my best rounding order?",
-  "Tell me more about Davis",
-  "Who's the DON on days at Sunrise?",
-  "Draft a note for Chen's Aricept recheck",
+  "Any overnight events?",
+  "What's pending across all facilities?",
+  "Who's my sickest patient right now?",
 ];
 
 const FOLLOWUP_SUGGESTIONS = [
+  "Tell me more about Davis",
+  "Draft a note for Chen's Aricept recheck",
   "Get Dr. Santos on the phone",
   "What about Elm Creek this afternoon?",
   "Prep me for the Williams family meeting",
   "Order the usual on Davis",
-  "Who's my sickest patient right now?",
 ];
 
 function formatText(text) {
@@ -87,8 +65,6 @@ export default function Home() {
 
   useEffect(() => {
     if (authed) {
-      // Add the opening brief
-      setMessages([{ role: 'ronda', text: INITIAL_BRIEF }]);
       inputRef.current?.focus();
     }
   }, [authed]);
@@ -148,7 +124,7 @@ export default function Home() {
 
   const resetChat = () => {
     if (!confirm('Reset the conversation?')) return;
-    setMessages([{ role: 'ronda', text: INITIAL_BRIEF }]);
+    setMessages([]);
     setHistory([]);
     setMsgCount(0);
     setShowSuggestions(true);
@@ -216,6 +192,14 @@ export default function Home() {
 
       {/* MESSAGES */}
       <div style={styles.messages}>
+        {messages.length === 0 && !isLoading && (
+          <div style={styles.welcome}>
+            <div style={styles.welcomeAvatar}>R</div>
+            <div style={styles.welcomeTitle}>Good morning, Dr. Kaplan</div>
+            <div style={styles.welcomeSub}>What do you need?</div>
+          </div>
+        )}
+
         {messages.map((msg, i) => (
           <div key={i} style={{
             ...styles.msg,
@@ -407,6 +391,24 @@ const styles = {
     borderBottom: '1px solid rgba(61,139,94,0.2)', flexShrink: 0,
   },
   bannerText: { fontSize: 12.5, color: '#4ea870', lineHeight: 1.5 },
+
+  // Welcome
+  welcome: {
+    flex: 1, display: 'flex', flexDirection: 'column',
+    alignItems: 'center', justifyContent: 'center', gap: 12,
+    paddingBottom: 40,
+  },
+  welcomeAvatar: {
+    width: 56, height: 56, background: '#3d8b5e', borderRadius: 16,
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+    fontWeight: 600, fontSize: 24, color: '#fff', marginBottom: 4,
+  },
+  welcomeTitle: {
+    fontSize: 20, fontWeight: 600, color: '#e8e9ed', letterSpacing: '-0.02em',
+  },
+  welcomeSub: {
+    fontSize: 14, color: '#5c5e6a',
+  },
 
   // Messages
   messages: {
