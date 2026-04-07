@@ -6,20 +6,20 @@ const DEMO_PASSWORD = 'ronda2026';
 const MAX_MESSAGES = 50;
 
 const INITIAL_SUGGESTIONS = [
-  "Give me my morning brief",
-  "Who should I see first?",
-  "Any overnight events?",
-  "What's pending across all facilities?",
-  "Who's my sickest patient right now?",
+  "Any new admits since yesterday?",
+  "I need to track prior auths every Friday",
+  "Mrs. Chen's daughter never called back — call her again",
+  "Who's on my rounding list tomorrow?",
+  "Set up a daily 6:30am brief for Sunrise Gardens",
 ];
 
 const FOLLOWUP_SUGGESTIONS = [
-  "Tell me more about Davis",
-  "Draft a note for Chen's Aricept recheck",
-  "Get Dr. Santos on the phone",
-  "What about Elm Creek this afternoon?",
-  "Prep me for the Williams family meeting",
-  "Order the usual on Davis",
+  "What did you find overnight?",
+  "Draft a note for Davis's hyperkalemia",
+  "Tell Mrs. Chen's daughter what we decided",
+  "Any prior auths still pending over 5 days?",
+  "Add Dr. Santos to the consult loop",
+  "Book a follow-up with nephrology for Davis",
 ];
 
 function formatText(text) {
