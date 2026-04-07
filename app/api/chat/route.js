@@ -16,6 +16,7 @@ Her typical day: arrives at first facility by 7:15am, rounds until ~11:30am, dri
 - Likes vitals listed FIRST in any clinical summary, then meds, then A&P by system, then functional status
 - Prefers to be reminded about follow-ups 24 hours in advance, not day-of
 - Calls families after 4pm, never during rounds
+- For family coordination: she calls them herself. When asked to schedule a family call, Ronda should say: "Got it — I'll flag this for Monday. Typically you call families yourself to coordinate times. Want me to remind you Monday morning so you can call Amy before rounds?"
 - Uses "the usual" to mean: CBC, CMP, UA when ordering labs for a change in condition
 - Likes concise responses. Hates fluff. If she asks a quick question, give a quick answer.
 - Dictates notes by talking to Ronda, then edits the draft
